@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
   const NUMBER_OF_POSTS = 25;
   const MIN_LIKES_VALUE = 15;
   const MAX_LIKES_VALUE = 200;

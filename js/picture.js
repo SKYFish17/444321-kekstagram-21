@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
   const picturesContainer = document.querySelector(`.pictures`);
 
   const buildUserPost = (pictureData) => {

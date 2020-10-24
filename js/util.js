@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
   const getRandomNumber = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
