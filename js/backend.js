@@ -3,13 +3,13 @@
 (() => {
   const StatusCode = {
     OK: 200,
-    BadRequest: 400,
-    Unauthorized: 401,
-    NotFound: 404
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
+    NOT_FOUND: 404
   };
 
-  const URL_LOAD = `https://javascript.pages.academy/kekstagram/data`;
-  const URL_SAVE = `https://javascript.pages.academy/kekstagram`;
+  const URL_DOWNLOAD = `https://javascript.pages.academy/kekstagram/data`;
+  const URL_UPLOAD = `https://javascript.pages.academy/kekstagram`;
   const TIMEOUT_IN_MS = 10000;
 
   const configuresXhrRequest = (url, timeout, method, respType) => {
@@ -33,15 +33,15 @@
           onLoad(xhr.response);
           break;
 
-        case StatusCode.BadRequest:
+        case StatusCode.BAD_REQUEST:
           error = `Неверный запрос`;
           break;
 
-        case StatusCode.Unauthorized:
+        case StatusCode.UNAUTHORIZED:
           error = `Пользователь не авторизован`;
           break;
 
-        case StatusCode.NotFound:
+        case StatusCode.NOT_FOUND:
           error = `Ничего не найдено`;
           break;
 
@@ -67,24 +67,24 @@
     xhr.send(data);
   };
 
-  const load = (onLoad, onError) => {
+  const download = (onLoad, onError) => {
 
-    const xhr = configuresXhrRequest(URL_LOAD, TIMEOUT_IN_MS, `GET`, `json`);
+    const xhr = configuresXhrRequest(URL_DOWNLOAD, TIMEOUT_IN_MS, `GET`, `json`);
 
     sendXhrRequest(xhr);
     processesXhrRequest(xhr, onLoad, onError, xhr.response);
   };
 
-  const save = (data, onLoad, onError) => {
+  const upload = (data, onLoad, onError) => {
 
-    const xhr = configuresXhrRequest(URL_SAVE, TIMEOUT_IN_MS, `POST`, `json`);
+    const xhr = configuresXhrRequest(URL_UPLOAD, TIMEOUT_IN_MS, `POST`, `json`);
 
     sendXhrRequest(xhr, data);
     processesXhrRequest(xhr, onLoad, onError);
   };
 
   window.backend = {
-    load,
-    save
+    download,
+    upload
   };
 })();

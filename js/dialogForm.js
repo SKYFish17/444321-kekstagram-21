@@ -18,6 +18,8 @@
   const scaleSmaller = scaleContainer.querySelector(`.scale__control--smaller`);
   const scaleBigger = scaleContainer.querySelector(`.scale__control--bigger`);
 
+  const imgUploadForm = imgUploadContainer.querySelector(`.img-upload__form`);
+
   const openUploadOverlay = () => {
     window.dialog.openModal();
     imgUploadOverlay.classList.remove(`hidden`);
@@ -67,6 +69,13 @@
 
   imgUploadCancel.addEventListener(`click`, () => {
     closeUploadOverlay();
+  });
+
+  imgUploadForm.addEventListener(`submit`, function (evt) {
+    window.backend.upload(new FormData(imgUploadForm), () => {
+      closeUploadOverlay();
+    });
+    evt.preventDefault();
   });
 
   window.dialogForm = {
