@@ -8,8 +8,8 @@
     NOT_FOUND: 404
   };
 
-  const URL_DOWNLOAD = `https://javascript.pages.academy/kekstagram/data`;
-  const URL_UPLOAD = `https://javascript.pages.academy/kekstagram`;
+  const URL_DOWNLOAD = `https://21.javascript.pages.academy/kekstagram/data`;
+  const URL_UPLOAD = `https://21.javascript.pages.academy/kekstagram`;
   const TIMEOUT_IN_MS = 10000;
 
   const configuresXhrRequest = (url, timeout, method, respType) => {
@@ -23,14 +23,18 @@
     return xhr;
   };
 
-  const processesXhrRequest = (xhr, onLoad, onError) => {
+  const processesXhrRequest = (xhr, onLoad, onError, isNeedXhrResp) => {
 
     xhr.addEventListener(`load`, () => {
       let error;
 
       switch (xhr.status) {
         case StatusCode.OK:
-          onLoad(xhr.response);
+          if (isNeedXhrResp) {
+            onLoad(xhr.response);
+          } else {
+            onLoad();
+          }
           break;
 
         case StatusCode.BAD_REQUEST:
@@ -72,7 +76,7 @@
     const xhr = configuresXhrRequest(URL_DOWNLOAD, TIMEOUT_IN_MS, `GET`, `json`);
 
     sendXhrRequest(xhr);
-    processesXhrRequest(xhr, onLoad, onError, xhr.response);
+    processesXhrRequest(xhr, onLoad, onError, true);
   };
 
   const upload = (data, onLoad, onError) => {
@@ -80,7 +84,7 @@
     const xhr = configuresXhrRequest(URL_UPLOAD, TIMEOUT_IN_MS, `POST`, `json`);
 
     sendXhrRequest(xhr, data);
-    processesXhrRequest(xhr, onLoad, onError);
+    processesXhrRequest(xhr, onLoad, onError, false);
   };
 
   window.backend = {

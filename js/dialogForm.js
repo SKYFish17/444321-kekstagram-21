@@ -20,6 +20,11 @@
 
   const imgUploadForm = imgUploadContainer.querySelector(`.img-upload__form`);
 
+  const template = document.querySelector(`#success`).content.querySelector(`.success`);
+  const successOverlay = template.cloneNode(true);
+  const main = document.querySelector(`main`);
+  const closeOverlayBtn = successOverlay.querySelector(`.success__button`);
+
   const openUploadOverlay = () => {
     window.dialog.openModal();
     imgUploadOverlay.classList.remove(`hidden`);
@@ -71,10 +76,39 @@
     closeUploadOverlay();
   });
 
-  imgUploadForm.addEventListener(`submit`, function (evt) {
-    window.backend.upload(new FormData(imgUploadForm), () => {
-      closeUploadOverlay();
+  const successOverlayEscPress = (evt) => {
+    if (evt.code === `Escape`) {
+      evt.preventDefault();
+      successOverlay.remove();
+
+      document.removeEventListener(`keydown`, successOverlayEscPress);
+    }
+  };
+
+  const successOverlayEnterPress = (evt) => {
+    if (evt.code === `Enter`) {
+      evt.preventDefault();
+      successOverlay.remove();
+
+      closeOverlayBtn.removeEventListener(`keydown`, successOverlayEnterPress);
+    }
+  };
+
+  const onLoad = () => {
+    main.insertAdjacentElement(`afterbegin`, successOverlay);
+
+    closeOverlayBtn.addEventListener(`click`, () => {
+      successOverlay.remove();
     });
+
+    closeOverlayBtn.addEventListener(`keydown`, successOverlayEnterPress);
+    document.addEventListener(`keydown`, successOverlayEscPress);
+
+    closeUploadOverlay();
+  };
+
+  imgUploadForm.addEventListener(`submit`, function (evt) {
+    window.backend.upload(new FormData(imgUploadForm), onLoad);
     evt.preventDefault();
   });
 
