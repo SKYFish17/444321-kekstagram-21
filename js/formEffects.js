@@ -10,6 +10,7 @@
   const effectLevelPin = effectLevelContainer.querySelector(`.effect-level__pin`);
   const effectLevelDepth = effectLevelContainer.querySelector(`.effect-level__depth`);
   const effectLevelValue = effectLevelContainer.querySelector(`.effect-level__value`);
+  // const effectsRadios = imgUploadContainer.querySelectorAll(`.effects__radio`);
 
   let previousEffectName = ``;
 
@@ -35,6 +36,16 @@
   const resetEffects = () => {
     imgUploadPreview.classList = ``;
     imgUploadPreview.style.filter = ``;
+
+    // for (let i = 0; i < effectsRadios.length; i++) {
+    //   if (effectsRadios[i].checked) {
+    //     console.log(i);
+    //     effectsRadios[i].removeAttribute(`checked`);
+    //     effectsRadios[0].setAttribute(`checked`, `checked`);
+
+    //     break;
+    //   }
+    // }
   };
 
   const getFilter = (effectType, effectMinLevel, effectMaxLevel, unit, pinPosition) => {

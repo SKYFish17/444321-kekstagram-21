@@ -24,6 +24,7 @@
 
   const resetScaleValue = () => {
     imgUploadPreviewContainer.style.transform = `scale` + `(` + 1 + `)`;
+    scaleInput.value = `100%`;
   };
 
   const onScaleBiggerClick = () => {

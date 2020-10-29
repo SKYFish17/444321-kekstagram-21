@@ -72,10 +72,6 @@
     }
   };
 
-  imgUploadCancel.addEventListener(`click`, () => {
-    closeUploadOverlay();
-  });
-
   const successOverlayEscPress = (evt) => {
     if (evt.code === `Escape`) {
       evt.preventDefault();
@@ -104,8 +100,13 @@
     closeOverlayBtn.addEventListener(`keydown`, successOverlayEnterPress);
     document.addEventListener(`keydown`, successOverlayEscPress);
 
+    imgUploadForm.reset();
     closeUploadOverlay();
   };
+
+  imgUploadCancel.addEventListener(`click`, () => {
+    closeUploadOverlay();
+  });
 
   imgUploadForm.addEventListener(`submit`, function (evt) {
     window.backend.upload(new FormData(imgUploadForm), onLoad);
