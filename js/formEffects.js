@@ -2,6 +2,8 @@
 
 (() => {
   const imgUploadContainer = document.querySelector(`.img-upload`);
+  const imgUploadForm = imgUploadContainer.querySelector(`.img-upload__form`);
+  const imgUploadInput = imgUploadContainer.querySelector(`.img-upload__input`);
   const imgUploadOverlay = imgUploadContainer.querySelector(`.img-upload__overlay`);
   const imgUploadPreviewContainer = imgUploadOverlay.querySelector(`.img-upload__preview`);
   const imgUploadPreview = imgUploadPreviewContainer.querySelector(`img`);
@@ -10,7 +12,6 @@
   const effectLevelPin = effectLevelContainer.querySelector(`.effect-level__pin`);
   const effectLevelDepth = effectLevelContainer.querySelector(`.effect-level__depth`);
   const effectLevelValue = effectLevelContainer.querySelector(`.effect-level__value`);
-  // const effectsRadios = imgUploadContainer.querySelectorAll(`.effects__radio`);
 
   let previousEffectName = ``;
 
@@ -34,18 +35,10 @@
   };
 
   const resetEffects = () => {
+    imgUploadInput.value = ``;
     imgUploadPreview.classList = ``;
     imgUploadPreview.style.filter = ``;
-
-    // for (let i = 0; i < effectsRadios.length; i++) {
-    //   if (effectsRadios[i].checked) {
-    //     console.log(i);
-    //     effectsRadios[i].removeAttribute(`checked`);
-    //     effectsRadios[0].setAttribute(`checked`, `checked`);
-
-    //     break;
-    //   }
-    // }
+    imgUploadForm.reset();
   };
 
   const getFilter = (effectType, effectMinLevel, effectMaxLevel, unit, pinPosition) => {
@@ -142,6 +135,7 @@
 
   window.formEffects = {
     onEffectsItemClick,
-    resetEffects
+    resetEffects,
+    imgUploadForm
   };
 })();

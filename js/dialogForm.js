@@ -2,8 +2,6 @@
 
 (() => {
   const imgUploadContainer = document.querySelector(`.img-upload`);
-
-  const imgUploadInput = imgUploadContainer.querySelector(`.img-upload__input`);
   const imgUploadOverlay = imgUploadContainer.querySelector(`.img-upload__overlay`);
   const imgUploadCancel = imgUploadContainer.querySelector(`.img-upload__cancel`);
 
@@ -17,8 +15,6 @@
   const scaleContainer = imgUploadContainer.querySelector(`.scale`);
   const scaleSmaller = scaleContainer.querySelector(`.scale__control--smaller`);
   const scaleBigger = scaleContainer.querySelector(`.scale__control--bigger`);
-
-  const imgUploadForm = imgUploadContainer.querySelector(`.img-upload__form`);
 
   const template = document.querySelector(`#success`).content.querySelector(`.success`);
   const successOverlay = template.cloneNode(true);
@@ -48,7 +44,6 @@
   const closeUploadOverlay = () => {
     window.dialog.closeModal();
     imgUploadOverlay.classList.add(`hidden`);
-    imgUploadInput.value = ``;
 
     hashtagsInput.removeEventListener(`input`, window.formValidate.validateTags);
 
@@ -100,7 +95,6 @@
     closeOverlayBtn.addEventListener(`keydown`, successOverlayEnterPress);
     document.addEventListener(`keydown`, successOverlayEscPress);
 
-    imgUploadForm.reset();
     closeUploadOverlay();
   };
 
@@ -108,8 +102,8 @@
     closeUploadOverlay();
   });
 
-  imgUploadForm.addEventListener(`submit`, function (evt) {
-    window.backend.upload(new FormData(imgUploadForm), onLoad);
+  window.formEffects.imgUploadForm.addEventListener(`submit`, function (evt) {
+    window.backend.upload(new FormData(window.formEffects.imgUploadForm), onLoad);
     evt.preventDefault();
   });
 
