@@ -16,10 +16,16 @@
   const scaleSmaller = scaleContainer.querySelector(`.scale__control--smaller`);
   const scaleBigger = scaleContainer.querySelector(`.scale__control--bigger`);
 
-  const template = document.querySelector(`#success`).content.querySelector(`.success`);
-  const successOverlay = template.cloneNode(true);
   const main = document.querySelector(`main`);
-  const closeOverlayBtn = successOverlay.querySelector(`.success__button`);
+  const templateSuccess = document.querySelector(`#success`).content.querySelector(`.success`);
+  const successOverlay = templateSuccess.cloneNode(true);
+  const successOverlayInner = successOverlay.querySelector(`.success__inner`);
+  const closeSuccessBtn = successOverlay.querySelector(`.success__button`);
+
+  const templateError = document.querySelector(`#error`).content.querySelector(`.error`);
+  const errorOverlay = templateError.cloneNode(true);
+  const errorOverlayInner = errorOverlay.querySelector(`.error__inner`);
+  const closeErrorBtn = errorOverlay.querySelector(`.error__button`);
 
   const openUploadOverlay = () => {
     window.dialog.openModal();
@@ -67,33 +73,84 @@
     }
   };
 
-  const successOverlayEscPress = (evt) => {
+  // обработчики success
+  const onSuccessOverlayEscPress = (evt) => {
     if (evt.code === `Escape`) {
       evt.preventDefault();
       successOverlay.remove();
 
-      document.removeEventListener(`keydown`, successOverlayEscPress);
+      document.removeEventListener(`keydown`, onSuccessOverlayEscPress);
     }
   };
 
-  const successOverlayEnterPress = (evt) => {
+  const onSuccessOverlayEnterPress = (evt) => {
     if (evt.code === `Enter`) {
       evt.preventDefault();
       successOverlay.remove();
 
-      closeOverlayBtn.removeEventListener(`keydown`, successOverlayEnterPress);
+      closeSuccessBtn.removeEventListener(`keydown`, onSuccessOverlayEnterPress);
+    }
+  };
+
+  const outSuccessOverlayInnerClick = (evt) => {
+    if (evt.target !== successOverlayInner) {
+      successOverlay.remove();
+
+      successOverlay.removeEventListener(`click`, outSuccessOverlayInnerClick);
+    }
+  };
+
+  // обработчики error
+  const onErrorOverlayEscPress = (evt) => {
+    if (evt.code === `Escape`) {
+      evt.preventDefault();
+      errorOverlay.remove();
+
+      document.removeEventListener(`keydown`, onErrorOverlayEscPress);
+    }
+  };
+
+  const onErrorOverlayEnterPress = (evt) => {
+    if (evt.code === `Enter`) {
+      evt.preventDefault();
+      errorOverlay.remove();
+
+      closeErrorBtn.removeEventListener(`keydown`, onErrorOverlayEnterPress);
+    }
+  };
+
+  const outErrorOverlayInnerClick = (evt) => {
+    if (evt.target !== errorOverlayInner) {
+      errorOverlay.remove();
+
+      errorOverlay.removeEventListener(`click`, outErrorOverlayInnerClick);
     }
   };
 
   const onLoad = () => {
     main.insertAdjacentElement(`afterbegin`, successOverlay);
 
-    closeOverlayBtn.addEventListener(`click`, () => {
+    closeSuccessBtn.addEventListener(`click`, () => {
       successOverlay.remove();
     });
 
-    closeOverlayBtn.addEventListener(`keydown`, successOverlayEnterPress);
-    document.addEventListener(`keydown`, successOverlayEscPress);
+    closeSuccessBtn.addEventListener(`keydown`, onSuccessOverlayEnterPress);
+    successOverlay.addEventListener(`click`, outSuccessOverlayInnerClick);
+    document.addEventListener(`keydown`, onSuccessOverlayEscPress);
+
+    closeUploadOverlay();
+  };
+
+  const onError = () => {
+    main.insertAdjacentElement(`afterbegin`, errorOverlay);
+
+    closeErrorBtn.addEventListener(`click`, () => {
+      errorOverlay.remove();
+    });
+
+    closeErrorBtn.addEventListener(`keydown`, onErrorOverlayEnterPress);
+    errorOverlay.addEventListener(`click`, outErrorOverlayInnerClick);
+    document.addEventListener(`keydown`, onErrorOverlayEscPress);
 
     closeUploadOverlay();
   };
@@ -103,7 +160,7 @@
   });
 
   window.formEffects.imgUploadForm.addEventListener(`submit`, function (evt) {
-    window.backend.upload(new FormData(window.formEffects.imgUploadForm), onLoad);
+    window.backend.upload(new FormData(window.formEffects.imgUploadForm), onLoad, onError);
     evt.preventDefault();
   });
 
