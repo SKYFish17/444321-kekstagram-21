@@ -14,7 +14,7 @@
 
     for (let i = 0; i < NUMBER_OF_POSTS; i++) {
       if (imgSrc === usersPosts[i].url) {
-        window.preview.render(usersPosts[i]);
+        window.preview.renderBigPicture(usersPosts[i]);
       }
     }
     document.addEventListener(`keydown`, onBigPictureEscPress);

@@ -50,6 +50,6 @@
   commentsCount.classList.add(`hidden`);
 
   window.preview = {
-    render: renderBigPicture
+    renderBigPicture
   };
 })();
