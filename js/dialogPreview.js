@@ -1,6 +1,8 @@
 'use strict';
 
 (() => {
+  const NUMBER_OF_POSTS = 25;
+
   const bigPicture = document.querySelector(`.big-picture`);
   const bigPictureCloseBtn = bigPicture.querySelector(`.big-picture__cancel`);
   const commentsList = bigPicture.querySelector(`.social__comments`);
@@ -10,7 +12,7 @@
     commentsList.innerHTML = ``;
     bigPicture.classList.remove(`hidden`);
 
-    for (let i = 0; i < window.constants.NUMBER_OF_POSTS; i++) {
+    for (let i = 0; i < NUMBER_OF_POSTS; i++) {
       if (imgSrc === usersPosts[i].url) {
         window.preview.render(usersPosts[i]);
       }

@@ -1,6 +1,11 @@
 'use strict';
 
 (() => {
+  const MAX_PERCENT = 100;
+  const EFFECT_LINE_LENGTH = 453;
+  const START_PIN_POSITION = 0;
+  const END_PIN_POSITION = START_PIN_POSITION + EFFECT_LINE_LENGTH;
+
   const imgUploadContainer = document.querySelector(`.img-upload`);
   const imgUploadForm = imgUploadContainer.querySelector(`.img-upload__form`);
   const imgUploadInput = imgUploadContainer.querySelector(`.img-upload__input`);
@@ -31,7 +36,7 @@
 
     previousEffectName = effectName;
     imgUploadPreview.classList.add(effectName);
-    changeEffectLevel(window.constants.END_PIN_POSITION);
+    changeEffectLevel(END_PIN_POSITION);
   };
 
   const resetEffects = () => {
@@ -46,7 +51,7 @@
     let filter;
     const effectLevelDifference = effectMaxLevel - effectMinLevel;
 
-    effectLevel = effectMinLevel + pinPosition / window.constants.END_PIN_POSITION * effectLevelDifference;
+    effectLevel = effectMinLevel + pinPosition / END_PIN_POSITION * effectLevelDifference;
 
     if (unit !== `none`) {
       filter = effectType + `(` + effectLevel + unit + `)`;
@@ -61,18 +66,18 @@
     let ratio;
 
     if (sign) {
-      ratio = numberOne / numberTwo * window.constants.MAX_PERCENT + sign;
+      ratio = numberOne / numberTwo * MAX_PERCENT + sign;
     } else {
-      ratio = numberOne / numberTwo * window.constants.MAX_PERCENT;
+      ratio = numberOne / numberTwo * MAX_PERCENT;
     }
 
     return ratio;
   };
 
   const renderActualEffectLevel = (pinPosition) => {
-    effectLevelPin.style.left = getRatio(pinPosition, window.constants.END_PIN_POSITION, `%`);
-    effectLevelDepth.style.width = getRatio(pinPosition, window.constants.END_PIN_POSITION, `%`);
-    effectLevelValue.value = getRatio(pinPosition, window.constants.END_PIN_POSITION);
+    effectLevelPin.style.left = getRatio(pinPosition, END_PIN_POSITION, `%`);
+    effectLevelDepth.style.width = getRatio(pinPosition, END_PIN_POSITION, `%`);
+    effectLevelValue.value = getRatio(pinPosition, END_PIN_POSITION);
   };
 
   const changeEffectLevel = (pinPosition) => {
@@ -118,7 +123,7 @@
 
       const pinPosition = effectLevelPin.offsetLeft - shift.x;
 
-      if (pinPosition >= window.constants.START_PIN_POSITION && pinPosition <= window.constants.END_PIN_POSITION) {
+      if (pinPosition >= START_PIN_POSITION && pinPosition <= END_PIN_POSITION) {
         changeEffectLevel(pinPosition);
       }
     };

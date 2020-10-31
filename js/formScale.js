@@ -1,6 +1,10 @@
 'use strict';
 
 (() => {
+  const SCALE_STEP = 25;
+  const MIN_SCALE = 25;
+  const MAX_SCALE = 100;
+
   const imgUploadContainer = document.querySelector(`.img-upload`);
   const imgUploadOverlay = imgUploadContainer.querySelector(`.img-upload__overlay`);
   const imgUploadPreviewContainer = imgUploadOverlay.querySelector(`.img-upload__preview`);
@@ -12,12 +16,12 @@
 
     switch (sign) {
       case `+`:
-        scaleInput.value = parseInt(scaleValue[0], 10) + window.constants.SCALE_STEP + `%`;
-        imgUploadPreviewContainer.style.transform = `scale` + `(` + (parseInt(scaleValue[0], 10) + window.constants.SCALE_STEP) / 100 + `)`;
+        scaleInput.value = parseInt(scaleValue[0], 10) + SCALE_STEP + `%`;
+        imgUploadPreviewContainer.style.transform = `scale` + `(` + (parseInt(scaleValue[0], 10) + SCALE_STEP) / 100 + `)`;
         break;
       case `-`:
-        scaleInput.value = parseInt(scaleValue[0], 10) - window.constants.SCALE_STEP + `%`;
-        imgUploadPreviewContainer.style.transform = `scale` + `(` + (parseInt(scaleValue[0], 10) - window.constants.SCALE_STEP) / 100 + `)`;
+        scaleInput.value = parseInt(scaleValue[0], 10) - SCALE_STEP + `%`;
+        imgUploadPreviewContainer.style.transform = `scale` + `(` + (parseInt(scaleValue[0], 10) - SCALE_STEP) / 100 + `)`;
         break;
     }
   };
@@ -28,28 +32,28 @@
   };
 
   const onScaleBiggerClick = () => {
-    if (scaleInput.value !== (window.constants.MAX_SCALE + `%`)) {
+    if (scaleInput.value !== (MAX_SCALE + `%`)) {
       changeScaleValue(`+`);
     }
   };
 
   const onScaleBiggerPressEnter = (evt) => {
     if (evt.code === `Enter`) {
-      if (scaleInput.value !== (window.constants.MAX_SCALE + `%`)) {
+      if (scaleInput.value !== (MAX_SCALE + `%`)) {
         changeScaleValue(`+`);
       }
     }
   };
 
   const onScaleSmallerClick = () => {
-    if (scaleInput.value !== (window.constants.MIN_SCALE + `%`)) {
+    if (scaleInput.value !== (MIN_SCALE + `%`)) {
       changeScaleValue(`-`);
     }
   };
 
   const onScaleSmallerPressEnter = (evt) => {
     if (evt.code === `Enter`) {
-      if (scaleInput.value !== (window.constants.MIN_SCALE + `%`)) {
+      if (scaleInput.value !== (MIN_SCALE + `%`)) {
         changeScaleValue(`-`);
       }
     }
