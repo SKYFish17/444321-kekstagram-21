@@ -21,8 +21,7 @@
   let previousEffectName = ``;
 
   const onEffectsItemClick = (evt) => {
-    const effectLabel = evt.target.nextElementSibling.querySelector(`.effects__preview`);
-    const effectName = effectLabel.classList[1];
+    const effectName = `effects__preview--${evt.target.value}`;
 
     if (previousEffectName) {
       imgUploadPreview.classList.remove(previousEffectName);
