@@ -4,6 +4,7 @@
   const SCALE_STEP = 25;
   const MIN_SCALE = 25;
   const MAX_SCALE = 100;
+  const IS_INCREASE = true;
 
   const imgUploadContainer = document.querySelector(`.img-upload`);
   const imgUploadOverlay = imgUploadContainer.querySelector(`.img-upload__overlay`);
@@ -11,15 +12,15 @@
   const scaleContainer = imgUploadContainer.querySelector(`.scale`);
   const scaleInput = scaleContainer.querySelector(`.scale__control--value`);
 
-  const changeScaleValue = (sign) => {
+  const changeScaleValue = (flag) => {
     const scaleValue = scaleInput.value.split(`%`);
 
-    switch (sign) {
-      case `+`:
+    switch (flag) {
+      case true:
         scaleInput.value = parseInt(scaleValue[0], 10) + SCALE_STEP + `%`;
         imgUploadPreviewContainer.style.transform = `scale` + `(` + (parseInt(scaleValue[0], 10) + SCALE_STEP) / 100 + `)`;
         break;
-      case `-`:
+      case false:
         scaleInput.value = parseInt(scaleValue[0], 10) - SCALE_STEP + `%`;
         imgUploadPreviewContainer.style.transform = `scale` + `(` + (parseInt(scaleValue[0], 10) - SCALE_STEP) / 100 + `)`;
         break;
@@ -33,28 +34,28 @@
 
   const onScaleBiggerClick = () => {
     if (scaleInput.value !== (MAX_SCALE + `%`)) {
-      changeScaleValue(`+`);
+      changeScaleValue(IS_INCREASE);
     }
   };
 
   const onScaleBiggerPressEnter = (evt) => {
     if (evt.code === `Enter`) {
       if (scaleInput.value !== (MAX_SCALE + `%`)) {
-        changeScaleValue(`+`);
+        changeScaleValue(IS_INCREASE);
       }
     }
   };
 
   const onScaleSmallerClick = () => {
     if (scaleInput.value !== (MIN_SCALE + `%`)) {
-      changeScaleValue(`-`);
+      changeScaleValue(!IS_INCREASE);
     }
   };
 
   const onScaleSmallerPressEnter = (evt) => {
     if (evt.code === `Enter`) {
       if (scaleInput.value !== (MIN_SCALE + `%`)) {
-        changeScaleValue(`-`);
+        changeScaleValue(!IS_INCREASE);
       }
     }
   };
