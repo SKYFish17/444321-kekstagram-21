@@ -8,7 +8,7 @@
   const imgUploadForm = imgUploadContainer.querySelector(`.img-upload__form`);
   const hashtagsInput = imgUploadContainer.querySelector(`.text__hashtags`);
 
-  const checksDuplicateTags = (tags) => {
+  const checkDuplicateTags = (tags) => {
     let areThereDuplicateTags = false;
 
     for (let i = 0; i < tags.length; i++) {
@@ -42,7 +42,7 @@
         hashtagsInput.setCustomValidity(`Текст после решётки должен состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.`);
       } else if (hashtagLength > HASHTAG_MAX_LENGTH) {
         hashtagsInput.setCustomValidity(`Максимальная длина хэштега - 20 символов, удалите ` + (hashtagLength - HASHTAG_MAX_LENGTH) + ` симв.`);
-      } else if (checksDuplicateTags(hashtags)) {
+      } else if (checkDuplicateTags(hashtags)) {
         hashtagsInput.setCustomValidity(`Хеш-теги не должны повторяться. #ХэшТег и #хэштег считаются одним и тем же тегом`);
       } else if (hashtags.length > MAX_NUM_OF_TAGS) {
         hashtagsInput.setCustomValidity(`Возможно ввести лишь 5 тегов`);
