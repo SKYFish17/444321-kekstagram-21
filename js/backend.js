@@ -12,7 +12,7 @@
   const URL_UPLOAD = `https://21.javascript.pages.academy/kekstagram`;
   const TIMEOUT_IN_MS = 10000;
 
-  const configuresXhrRequest = (url, timeout, method, respType) => {
+  const configureXhrRequest = (url, timeout, method, respType) => {
 
     const xhr = new XMLHttpRequest();
 
@@ -73,7 +73,7 @@
 
   const download = (onLoad, onError) => {
 
-    const xhr = configuresXhrRequest(URL_DOWNLOAD, TIMEOUT_IN_MS, `GET`, `json`);
+    const xhr = configureXhrRequest(URL_DOWNLOAD, TIMEOUT_IN_MS, `GET`, `json`);
 
     sendXhrRequest(xhr);
     processesXhrRequest(xhr, onLoad, onError, true);
@@ -81,7 +81,7 @@
 
   const upload = (data, onLoad, onError) => {
 
-    const xhr = configuresXhrRequest(URL_UPLOAD, TIMEOUT_IN_MS, `POST`, `json`);
+    const xhr = configureXhrRequest(URL_UPLOAD, TIMEOUT_IN_MS, `POST`, `json`);
 
     sendXhrRequest(xhr, data);
     processesXhrRequest(xhr, onLoad, onError, false);
