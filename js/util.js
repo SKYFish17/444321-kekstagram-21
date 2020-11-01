@@ -10,7 +10,7 @@
 
   const getRandomValue = (arr) => arr[getRandomNumber(0, arr.length - 1)];
 
-  const getHtmlElement = (tag, className) => {
+  const createHtmlElement = (tag, className) => {
     let htmlElement = document.createElement(tag);
     htmlElement.classList.add(className);
 
@@ -20,6 +20,6 @@
   window.util = {
     getRandomNumber,
     getRandomValue,
-    getHtmlElement
+    createHtmlElement
   };
 })();

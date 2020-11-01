@@ -13,9 +13,9 @@
   const commentsList = bigPicture.querySelector(`.social__comments`);
 
   const buildComment = (userComment) => {
-    const newComment = window.util.getHtmlElement(`li`, `social__comment`);
+    const newComment = window.util.createHtmlElement(`li`, `social__comment`);
 
-    const newCommentAvatar = window.util.getHtmlElement(`img`, `social__picture`);
+    const newCommentAvatar = window.util.createHtmlElement(`img`, `social__picture`);
     newCommentAvatar.src = userComment.avatar;
     newCommentAvatar.alt = userComment.name;
     newCommentAvatar.width = COMMENT_AVATAR_WIDTH;
@@ -23,7 +23,7 @@
 
     newComment.appendChild(newCommentAvatar);
 
-    const newCommentText = window.util.getHtmlElement(`p`, `social__text`);
+    const newCommentText = window.util.createHtmlElement(`p`, `social__text`);
     newCommentText.textContent = userComment.message;
 
     newComment.appendChild(newCommentText);
