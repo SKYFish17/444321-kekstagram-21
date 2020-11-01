@@ -40,5 +40,5 @@
     document.body.insertAdjacentElement(`afterbegin`, node);
   };
 
-  window.backend.download(onLoad, onError);
+  window.backend.load(onLoad, onError);
 })();

@@ -160,7 +160,7 @@
   });
 
   window.formEffects.imgUploadForm.addEventListener(`submit`, function (evt) {
-    window.backend.upload(new FormData(window.formEffects.imgUploadForm), onLoad, onError);
+    window.backend.save(new FormData(window.formEffects.imgUploadForm), onLoad, onError);
     evt.preventDefault();
   });
 

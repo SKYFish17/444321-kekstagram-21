@@ -67,28 +67,24 @@
     });
   };
 
-  const sendXhrRequest = (xhr, data = null) => {
-    xhr.send(data);
-  };
-
-  const download = (onLoad, onError) => {
+  const load = (onLoad, onError) => {
 
     const xhr = configureXhrRequest(URL_DOWNLOAD, TIMEOUT_IN_MS, `GET`, `json`);
 
-    sendXhrRequest(xhr);
+    xhr.send();
     processesXhrRequest(xhr, onLoad, onError, true);
   };
 
-  const upload = (data, onLoad, onError) => {
+  const save = (data, onLoad, onError) => {
 
     const xhr = configureXhrRequest(URL_UPLOAD, TIMEOUT_IN_MS, `POST`, `json`);
 
-    sendXhrRequest(xhr, data);
+    xhr.send(data);
     processesXhrRequest(xhr, onLoad, onError, false);
   };
 
   window.backend = {
-    download,
-    upload
+    load,
+    save
   };
 })();
