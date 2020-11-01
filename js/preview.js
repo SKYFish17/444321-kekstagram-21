@@ -1,8 +1,10 @@
 'use strict';
 
 (() => {
-  const COMMENT_AVATAR_WIDTH = 35;
-  const COMMENT_AVATAR_HEIGHT = 35;
+  const COMMENT_AVATAR_SIZE = {
+    WIDTH: 35,
+    HEIGHT: 35
+  };
 
   const bigPicture = document.querySelector(`.big-picture`);
   const bigPictureImg = bigPicture.querySelector(`.big-picture__img`).querySelector(`img`);
@@ -18,8 +20,8 @@
     const newCommentAvatar = window.util.createHtmlElement(`img`, `social__picture`);
     newCommentAvatar.src = userComment.avatar;
     newCommentAvatar.alt = userComment.name;
-    newCommentAvatar.width = COMMENT_AVATAR_WIDTH;
-    newCommentAvatar.height = COMMENT_AVATAR_HEIGHT;
+    newCommentAvatar.width = COMMENT_AVATAR_SIZE.WIDTH;
+    newCommentAvatar.height = COMMENT_AVATAR_SIZE.HEIGHT;
 
     newComment.appendChild(newCommentAvatar);
 
