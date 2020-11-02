@@ -15,17 +15,17 @@
 
   const changeScaleValue = (checkedButton) => {
     const scaleValue = scaleInput.value.split(`%`);
-    const bigger = (parseInt(scaleValue[0], 10) + SCALE_STEP) / 100;
-    const smaller = (parseInt(scaleValue[0], 10) - SCALE_STEP) / 100;
+    const bigger = Number(scaleValue[0]) + SCALE_STEP;
+    const smaller = Number(scaleValue[0]) - SCALE_STEP;
 
     switch (checkedButton) {
       case scaleBiggerBtn:
-        scaleInput.value = `${bigger * 100}%`;
-        imgUploadPreviewContainer.style.transform = `scale(${bigger})`;
+        scaleInput.value = `${bigger}%`;
+        imgUploadPreviewContainer.style.transform = `scale(${bigger / 100})`;
         break;
       case scaleSmallerBtn:
-        scaleInput.value = `${smaller * 100}%`;
-        imgUploadPreviewContainer.style.transform = `scale(${smaller})`;
+        scaleInput.value = `${smaller}%`;
+        imgUploadPreviewContainer.style.transform = `scale(${smaller / 100})`;
         break;
     }
   };
