@@ -1,7 +1,7 @@
 'use strict';
 
 (() => {
-  const COMMENT_AVATAR_SIZE = {
+  const commentAvatarSize = {
     WIDTH: 35,
     HEIGHT: 35
   };
@@ -20,8 +20,8 @@
     const newCommentAvatar = window.util.createHtmlElement(`img`, `social__picture`);
     newCommentAvatar.src = userComment.avatar;
     newCommentAvatar.alt = userComment.name;
-    newCommentAvatar.width = COMMENT_AVATAR_SIZE.WIDTH;
-    newCommentAvatar.height = COMMENT_AVATAR_SIZE.HEIGHT;
+    newCommentAvatar.width = commentAvatarSize.WIDTH;
+    newCommentAvatar.height = commentAvatarSize.HEIGHT;
 
     newComment.appendChild(newCommentAvatar);
 
