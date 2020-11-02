@@ -20,8 +20,8 @@
     const newCommentAvatar = window.util.createHtmlElement(`img`, `social__picture`);
     newCommentAvatar.src = userComment.avatar;
     newCommentAvatar.alt = userComment.name;
-    newCommentAvatar.width = commentAvatarSize.WIDTH;
-    newCommentAvatar.height = commentAvatarSize.HEIGHT;
+    newCommentAvatar.width = CommentAvatarSize.WIDTH;
+    newCommentAvatar.height = CommentAvatarSize.HEIGHT;
 
     newComment.appendChild(newCommentAvatar);
 
