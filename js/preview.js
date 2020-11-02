@@ -1,7 +1,7 @@
 'use strict';
 
 (() => {
-  const commentAvatarSize = {
+  const CommentAvatarSize = {
     WIDTH: 35,
     HEIGHT: 35
   };
