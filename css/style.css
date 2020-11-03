@@ -1376,6 +1376,22 @@ main {
           transform: translateX(-50%);
 }
 
+/* Ошибка загрузки изображений с сервера
+   ========================================================================== */
+
+.download-error {
+  position: absolute;
+  margin: 0 auto;
+  padding-top: 9px;
+  padding-bottom: 10px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  font-size: 30px;
+  text-align: center;
+  background-color: red;
+}
+
 
 /* Адаптивности чуток
    ========================================================================== */
