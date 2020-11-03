@@ -2,8 +2,8 @@
 
 (() => {
   const SCALE_STEP = 25;
-  const MIN_SCALE = 25;
-  const MAX_SCALE = 100;
+  const MIN_PERCENT = 25;
+  const MAX_PERCENT = 100;
 
   const imgUploadContainer = document.querySelector(`.img-upload`);
   const imgUploadOverlay = imgUploadContainer.querySelector(`.img-upload__overlay`);
@@ -15,49 +15,49 @@
 
   const changeScaleValue = (checkedButton) => {
     const scaleValue = scaleInput.value.split(`%`);
-    const bigger = Number(scaleValue[0]) + SCALE_STEP;
-    const smaller = Number(scaleValue[0]) - SCALE_STEP;
+    const increaseValue = Number(scaleValue[0]) + SCALE_STEP;
+    const decreaseValue = Number(scaleValue[0]) - SCALE_STEP;
 
     switch (checkedButton) {
       case scaleBiggerBtn:
-        scaleInput.value = `${bigger}%`;
-        imgUploadPreviewContainer.style.transform = `scale(${bigger / 100})`;
+        scaleInput.value = `${increaseValue}%`;
+        imgUploadPreviewContainer.style.transform = `scale(${increaseValue / MAX_PERCENT})`;
         break;
       case scaleSmallerBtn:
-        scaleInput.value = `${smaller}%`;
-        imgUploadPreviewContainer.style.transform = `scale(${smaller / 100})`;
+        scaleInput.value = `${decreaseValue}%`;
+        imgUploadPreviewContainer.style.transform = `scale(${decreaseValue / MAX_PERCENT})`;
         break;
     }
   };
 
   const resetScaleValue = () => {
     imgUploadPreviewContainer.style.transform = `scale(1)`;
-    scaleInput.value = `100%`;
+    scaleInput.value = `${MAX_PERCENT}%`;
   };
 
   const onScaleBiggerClick = (evt) => {
-    if (scaleInput.value !== (MAX_SCALE + `%`)) {
+    if (scaleInput.value !== (MAX_PERCENT + `%`)) {
       changeScaleValue(evt.target);
     }
   };
 
   const onScaleBiggerPressEnter = (evt) => {
     if (evt.code === `Enter`) {
-      if (scaleInput.value !== (MAX_SCALE + `%`)) {
+      if (scaleInput.value !== (MAX_PERCENT + `%`)) {
         changeScaleValue(evt.target);
       }
     }
   };
 
   const onScaleSmallerClick = (evt) => {
-    if (scaleInput.value !== (MIN_SCALE + `%`)) {
+    if (scaleInput.value !== (MIN_PERCENT + `%`)) {
       changeScaleValue(evt.target);
     }
   };
 
   const onScaleSmallerPressEnter = (evt) => {
     if (evt.code === `Enter`) {
-      if (scaleInput.value !== (MIN_SCALE + `%`)) {
+      if (scaleInput.value !== (MIN_PERCENT + `%`)) {
         changeScaleValue(evt.target);
       }
     }
