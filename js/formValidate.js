@@ -9,7 +9,7 @@
   const hashtagsInput = imgUploadContainer.querySelector(`.text__hashtags`);
 
   const checkDuplicateTags = (tags) => {
-    let isThereDuplicateTags = false;
+    let isDuplicated = false;
 
     for (let i = 0; i < tags.length; i++) {
       tags[i] = tags[i].toLowerCase();
@@ -18,12 +18,12 @@
     for (let j = 0; j < tags.length - 1; j++) {
       for (let k = j + 1; k < tags.length; k++) {
         if (tags[j] === tags[k]) {
-          isThereDuplicateTags = true;
+          isDuplicated = true;
         }
       }
     }
 
-    return isThereDuplicateTags;
+    return isDuplicated;
   };
 
   const validateTags = () => {
