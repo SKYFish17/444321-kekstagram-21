@@ -1,9 +1,6 @@
 'use strict';
 
 (() => {
-  const RANDOM_PICTURES_NUMBERS = 10;
-  const MIN_RANDOM_PICTURE_INDEX = 0;
-
   const picturesContainer = document.querySelector(`.pictures`);
 
   const imgFilters = document.querySelector(`.img-filters`);
@@ -35,78 +32,23 @@
     picturesContainer.appendChild(fragment);
   };
 
-  const getUnrepeatRandomPicturesData = (picturesData) => {
-    let unrepeatRandomPicturesNumbers = [];
-    let currentRandomNumber;
-
-    while (unrepeatRandomPicturesNumbers.length < RANDOM_PICTURES_NUMBERS) {
-      let isUnrepeatRandomPictureNumber = true;
-
-      currentRandomNumber = window.util.getRandomNumber(MIN_RANDOM_PICTURE_INDEX, picturesData.length - 1);
-
-      for (let i = 0; i < unrepeatRandomPicturesNumbers.length; i++) {
-        if (unrepeatRandomPicturesNumbers[i] === currentRandomNumber) {
-          isUnrepeatRandomPictureNumber = false;
-        }
-      }
-
-      if (isUnrepeatRandomPictureNumber) {
-        unrepeatRandomPicturesNumbers.push(currentRandomNumber);
-      }
-    }
-
-    let randomPicturesData = [];
-
-    for (let i = 0; i < unrepeatRandomPicturesNumbers.length; i++) {
-      randomPicturesData[i] = picturesData[unrepeatRandomPicturesNumbers[i]];
-    }
-
-    return randomPicturesData;
-  };
-
-
   const onLoad = (picturesData) => {
     renderPictures(picturesData);
     window.main.setPicturesHandlers(picturesData);
 
     imgFilters.classList.remove(`img-filters--inactive`);
 
-    let activeFilterBtn = filterDefaultBtn;
-    let nodes = picturesContainer.children;
-
     filterRandomBtn.addEventListener(`click`, (evt) => {
-      evt.preventDefault();
-
-      for (let i = nodes.length - 1; i >= 0; i--) {
-        if (nodes[i].classList.contains(`picture`)) {
-          nodes[i].remove();
-        }
-      }
-
-      // подстановка случайных данных для отрисовки
-      renderPictures(getUnrepeatRandomPicturesData(picturesData));
-
-      activeFilterBtn.classList.remove(`img-filters__button--active`);
-      activeFilterBtn = filterRandomBtn;
-      filterRandomBtn.classList.add(`img-filters__button--active`);
+      window.filters.onFilterRandomBtnClick(evt, picturesData);
     });
 
     filterDefaultBtn.addEventListener(`click`, (evt) => {
-      evt.preventDefault();
-
-      for (let i = nodes.length - 1; i >= 0; i--) {
-        if (nodes[i].classList.contains(`picture`)) {
-          nodes[i].remove();
-        }
-      }
-
-      renderPictures(picturesData);
-
-      activeFilterBtn.classList.remove(`img-filters__button--active`);
-      activeFilterBtn = filterDefaultBtn;
-      filterDefaultBtn.classList.add(`img-filters__button--active`);
+      window.filters.onFilterDefaultBtnClick(evt, picturesData);
     });
 
+    filterDiscussedBtn.addEventListener(`click`, (evt) => {
+      window.filters.onFilterDiscussedBtnClick(evt, picturesData);
+    });
   };
 
   const onError = (errorMessage) => {
@@ -118,4 +60,8 @@
   };
 
   window.backend.load(onLoad, onError);
+
+  window.picture = {
+    renderPictures
+  };
 })();
