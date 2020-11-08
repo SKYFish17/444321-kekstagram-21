@@ -71,23 +71,25 @@
 
     clearingScreen();
     window.picture.renderPictures(data);
+
     changeActiveFilterBtn(btn);
   };
 
-  const onFilterDefaultBtnClick = (evt, picturesData) => {
+  const onFilterDefaultBtnClick = window.debounce((evt, picturesData) => {
     applyFilter(evt, picturesData, filterDefaultBtn);
-  };
+  });
 
-  const onFilterRandomBtnClick = (evt, picturesData) => {
+  const onFilterRandomBtnClick = window.debounce((evt, picturesData) => {
     const unrepeatRandomPicturesData = getUnrepeatRandomPicturesData(picturesData);
 
     applyFilter(evt, unrepeatRandomPicturesData, filterRandomBtn);
-  };
+  });
 
-  const onFilterDiscussedBtnClick = (evt, picturesData) => {
+  const onFilterDiscussedBtnClick = window.debounce((evt, picturesData) => {
     const sortedPicturesData = getSortedByNumberOfCommentsPicturesData(picturesData);
+
     applyFilter(evt, sortedPicturesData, filterDiscussedBtn);
-  };
+  });
 
   window.filters = {
     onFilterRandomBtnClick,
