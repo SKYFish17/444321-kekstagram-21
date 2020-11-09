@@ -9,6 +9,8 @@
 
   const imgFilters = document.querySelector(`.img-filters`);
   const filterDefaultBtn = imgFilters.querySelector(`#filter-default`);
+  const filterRandomBtn = imgFilters.querySelector(`#filter-random`);
+  const filterDiscussedBtn = imgFilters.querySelector(`#filter-discussed`);
 
   let activeFilterBtn = filterDefaultBtn;
 
@@ -74,28 +76,19 @@
     applyFilter(evt, picturesData);
   });
 
-  const onFilterDefaultBtnClick = (evt, picturesData, btn) => {
-    updatePictures(evt, picturesData);
-    changeActiveFilterBtn(btn);
-  };
+  const onFilterBtnClick = (evt, picturesData, btn) => {
+    let data = picturesData;
 
-  const onFilterRandomBtnClick = (evt, picturesData, btn) => {
-    const unrepeatRandomPicturesData = getUnrepeatRandomPicturesData(picturesData);
-
-    updatePictures(evt, unrepeatRandomPicturesData);
-    changeActiveFilterBtn(btn);
-  };
-
-  const onFilterDiscussedBtnClick = (evt, picturesData, btn) => {
-    const sortedPicturesData = getSortedByNumberOfCommentsPicturesData(picturesData);
-
-    updatePictures(evt, sortedPicturesData);
+    if (btn === filterRandomBtn) {
+      data = getUnrepeatRandomPicturesData(picturesData);
+    } else if (btn === filterDiscussedBtn) {
+      data = getSortedByNumberOfCommentsPicturesData(picturesData);
+    }
+    updatePictures(evt, data);
     changeActiveFilterBtn(btn);
   };
 
   window.filters = {
-    onFilterRandomBtnClick,
-    onFilterDefaultBtnClick,
-    onFilterDiscussedBtnClick
+    onFilterBtnClick
   };
 })();

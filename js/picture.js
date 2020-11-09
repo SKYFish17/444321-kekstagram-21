@@ -4,9 +4,7 @@
   const picturesContainer = document.querySelector(`.pictures`);
 
   const imgFilters = document.querySelector(`.img-filters`);
-  const filterDefaultBtn = imgFilters.querySelector(`#filter-default`);
-  const filterRandomBtn = imgFilters.querySelector(`#filter-random`);
-  const filterDiscussedBtn = imgFilters.querySelector(`#filter-discussed`);
+  const imgFiltersForm = imgFilters.querySelector(`.img-filters__form`);
 
   const buildUserPost = (pictureData) => {
     const template = document.querySelector(`#picture`).content.querySelector(`.picture`);
@@ -38,16 +36,8 @@
 
     imgFilters.classList.remove(`img-filters--inactive`);
 
-    filterRandomBtn.addEventListener(`click`, (evt) => {
-      window.filters.onFilterRandomBtnClick(evt, picturesData, filterRandomBtn);
-    });
-
-    filterDefaultBtn.addEventListener(`click`, (evt) => {
-      window.filters.onFilterDefaultBtnClick(evt, picturesData, filterDefaultBtn);
-    });
-
-    filterDiscussedBtn.addEventListener(`click`, (evt) => {
-      window.filters.onFilterDiscussedBtnClick(evt, picturesData, filterDiscussedBtn);
+    imgFiltersForm.addEventListener(`click`, (evt) => {
+      window.filters.onFilterBtnClick(evt, picturesData, evt.target);
     });
   };
 
