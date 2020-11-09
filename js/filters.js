@@ -9,8 +9,6 @@
 
   const imgFilters = document.querySelector(`.img-filters`);
   const filterDefaultBtn = imgFilters.querySelector(`#filter-default`);
-  const filterRandomBtn = imgFilters.querySelector(`#filter-random`);
-  const filterDiscussedBtn = imgFilters.querySelector(`#filter-discussed`);
 
   let activeFilterBtn = filterDefaultBtn;
 
@@ -66,30 +64,34 @@
     activeFilterBtn.classList.add(`img-filters__button--active`);
   };
 
-  const applyFilter = (evt, data, btn) => {
+  const applyFilter = (evt, data) => {
     evt.preventDefault();
-
     clearingScreen();
     window.picture.renderPictures(data);
+  };
 
+  const updatePictures = window.debounce((evt, picturesData) => {
+    applyFilter(evt, picturesData);
+  });
+
+  const onFilterDefaultBtnClick = (evt, picturesData, btn) => {
+    updatePictures(evt, picturesData);
     changeActiveFilterBtn(btn);
   };
 
-  const onFilterDefaultBtnClick = window.debounce((evt, picturesData) => {
-    applyFilter(evt, picturesData, filterDefaultBtn);
-  });
-
-  const onFilterRandomBtnClick = window.debounce((evt, picturesData) => {
+  const onFilterRandomBtnClick = (evt, picturesData, btn) => {
     const unrepeatRandomPicturesData = getUnrepeatRandomPicturesData(picturesData);
 
-    applyFilter(evt, unrepeatRandomPicturesData, filterRandomBtn);
-  });
+    updatePictures(evt, unrepeatRandomPicturesData);
+    changeActiveFilterBtn(btn);
+  };
 
-  const onFilterDiscussedBtnClick = window.debounce((evt, picturesData) => {
+  const onFilterDiscussedBtnClick = (evt, picturesData, btn) => {
     const sortedPicturesData = getSortedByNumberOfCommentsPicturesData(picturesData);
 
-    applyFilter(evt, sortedPicturesData, filterDiscussedBtn);
-  });
+    updatePictures(evt, sortedPicturesData);
+    changeActiveFilterBtn(btn);
+  };
 
   window.filters = {
     onFilterRandomBtnClick,

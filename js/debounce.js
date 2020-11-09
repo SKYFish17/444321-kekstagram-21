@@ -17,4 +17,5 @@
   };
 
   window.debounce = debounce;
+
 })();

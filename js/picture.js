@@ -39,15 +39,15 @@
     imgFilters.classList.remove(`img-filters--inactive`);
 
     filterRandomBtn.addEventListener(`click`, (evt) => {
-      window.filters.onFilterRandomBtnClick(evt, picturesData);
+      window.filters.onFilterRandomBtnClick(evt, picturesData, filterRandomBtn);
     });
 
     filterDefaultBtn.addEventListener(`click`, (evt) => {
-      window.filters.onFilterDefaultBtnClick(evt, picturesData);
+      window.filters.onFilterDefaultBtnClick(evt, picturesData, filterDefaultBtn);
     });
 
     filterDiscussedBtn.addEventListener(`click`, (evt) => {
-      window.filters.onFilterDiscussedBtnClick(evt, picturesData);
+      window.filters.onFilterDiscussedBtnClick(evt, picturesData, filterDiscussedBtn);
     });
   };
 
