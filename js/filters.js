@@ -52,7 +52,7 @@
     return sortedPicturesData;
   };
 
-  const clearingScreen = () => {
+  const clearScreen = () => {
     for (let i = picturesContainerElements.length - 1; i >= 0; i--) {
       if (picturesContainerElements[i].classList.contains(`picture`)) {
         picturesContainerElements[i].remove();
@@ -68,7 +68,7 @@
 
   const applyFilter = (evt, data) => {
     evt.preventDefault();
-    clearingScreen();
+    clearScreen();
     window.picture.renderPictures(data);
   };
 
