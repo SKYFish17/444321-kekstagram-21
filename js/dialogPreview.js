@@ -16,6 +16,7 @@
     window.util.setTabPriority(commentsLoaderBtn, tabValue);
     window.util.setTabPriority(socialCommentInput, tabValue);
     window.util.setTabPriority(socialCommentSubmit, tabValue);
+    window.util.setTabPriority(bigPictureCloseBtn, tabValue);
   };
 
   const openBigPicture = (imgSrc, usersPosts) => {
