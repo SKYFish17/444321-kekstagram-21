@@ -11,12 +11,19 @@
   const socialCommentInput = bigPicture.querySelector(`.social__footer-text`);
   const socialCommentSubmit = bigPicture.querySelector(`.social__footer-btn`);
 
-  const setTabPriorityBigPictureElements = (tabValue) => {
-    window.util.setTabPriority(likesBtn, tabValue);
-    window.util.setTabPriority(commentsLoaderBtn, tabValue);
-    window.util.setTabPriority(socialCommentInput, tabValue);
-    window.util.setTabPriority(socialCommentSubmit, tabValue);
-    window.util.setTabPriority(bigPictureCloseBtn, tabValue);
+  const interactiveElements = [
+    likesBtn,
+    commentsLoaderBtn,
+    commentsLoaderBtn,
+    socialCommentInput,
+    socialCommentSubmit,
+    bigPictureCloseBtn
+  ];
+
+  const setTabPriority = (elements, tabValue) => {
+    elements.forEach((element) => {
+      element.setAttribute(`tabindex`, tabValue);
+    });
   };
 
   const openBigPicture = (imgSrc, usersPosts) => {
@@ -30,14 +37,14 @@
       }
     }
     document.addEventListener(`keydown`, onBigPictureEscPress);
-    setTabPriorityBigPictureElements(1);
+    setTabPriority(interactiveElements, 1);
   };
 
   const closeBigPicture = () => {
     bigPicture.classList.add(`hidden`);
     window.dialog.closeModal();
     document.removeEventListener(`keydown`, onBigPictureEscPress);
-    setTabPriorityBigPictureElements(0);
+    setTabPriority(interactiveElements, 0);
   };
 
   bigPictureCloseBtn.addEventListener(`click`, () => {
