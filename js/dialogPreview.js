@@ -6,6 +6,17 @@
   const bigPicture = document.querySelector(`.big-picture`);
   const bigPictureCloseBtn = bigPicture.querySelector(`.big-picture__cancel`);
   const commentsList = bigPicture.querySelector(`.social__comments`);
+  const likesBtn = bigPicture.querySelector(`.likes-count`);
+  const commentsLoaderBtn = bigPicture.querySelector(`.comments-loader`);
+  const socialCommentInput = bigPicture.querySelector(`.social__footer-text`);
+  const socialCommentSubmit = bigPicture.querySelector(`.social__footer-btn`);
+
+  const setTabPriorityBigPictureElements = (tabValue) => {
+    window.util.setTabPriority(likesBtn, tabValue);
+    window.util.setTabPriority(commentsLoaderBtn, tabValue);
+    window.util.setTabPriority(socialCommentInput, tabValue);
+    window.util.setTabPriority(socialCommentSubmit, tabValue);
+  };
 
   const openBigPicture = (imgSrc, usersPosts) => {
     window.dialog.openModal();
@@ -18,12 +29,14 @@
       }
     }
     document.addEventListener(`keydown`, onBigPictureEscPress);
+    setTabPriorityBigPictureElements(1);
   };
 
   const closeBigPicture = () => {
     bigPicture.classList.add(`hidden`);
     window.dialog.closeModal();
     document.removeEventListener(`keydown`, onBigPictureEscPress);
+    setTabPriorityBigPictureElements(0);
   };
 
   bigPictureCloseBtn.addEventListener(`click`, () => {

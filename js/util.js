@@ -17,9 +17,14 @@
     return htmlElement;
   };
 
+  const setTabPriority = (element, tabValue) => {
+    element.setAttribute(`tabindex`, tabValue);
+  };
+
   window.util = {
     getRandomNumber,
     getRandomValue,
-    createHtmlElement
+    createHtmlElement,
+    setTabPriority
   };
 })();
