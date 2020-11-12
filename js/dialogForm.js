@@ -73,7 +73,6 @@
     }
   };
 
-  // обработчики success
   const onSuccessOverlayEscPress = (evt) => {
     if (evt.code === `Escape`) {
       evt.preventDefault();
@@ -100,7 +99,6 @@
     }
   };
 
-  // обработчики error
   const onErrorOverlayEscPress = (evt) => {
     if (evt.code === `Escape`) {
       evt.preventDefault();
