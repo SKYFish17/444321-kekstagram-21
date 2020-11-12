@@ -20,6 +20,6 @@
   window.util = {
     getRandomNumber,
     getRandomValue,
-    createHtmlElement,
+    createHtmlElement
   };
 })();
