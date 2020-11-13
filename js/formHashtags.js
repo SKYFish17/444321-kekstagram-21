@@ -26,7 +26,7 @@
     return isDuplicated;
   };
 
-  const validateTags = () => {
+  const validate = () => {
     const hashtagsText = hashtagsInput.value;
     const hashtags = hashtagsText.split(` `);
 
@@ -53,7 +53,7 @@
     imgUploadForm.reportValidity();
   };
 
-  window.formValidate = {
-    validateTags
+  window.formHashtags = {
+    validate
   };
 })();

@@ -31,7 +31,7 @@
     window.dialog.openModal();
     imgUploadOverlay.classList.remove(`hidden`);
 
-    hashtagsInput.addEventListener(`input`, window.formValidate.validateTags);
+    hashtagsInput.addEventListener(`input`, window.formHashtags.validate);
 
     document.addEventListener(`keydown`, onUploadOverlayEscPress);
 
@@ -51,7 +51,7 @@
     window.dialog.closeModal();
     imgUploadOverlay.classList.add(`hidden`);
 
-    hashtagsInput.removeEventListener(`input`, window.formValidate.validateTags);
+    hashtagsInput.removeEventListener(`input`, window.formHashtags.validate);
     hashtagsInput.setCustomValidity(``);
 
     document.removeEventListener(`keydown`, onUploadOverlayEscPress);
