@@ -69,7 +69,7 @@
   const applyFilter = (evt, data) => {
     evt.preventDefault();
     clearScreen();
-    window.picture.renderPictures(data);
+    window.picture.render(data);
   };
 
   const updatePictures = window.debounce((evt, picturesData) => {

@@ -20,7 +20,7 @@
     return newPost;
   };
 
-  const renderPictures = (data) => {
+  const render = (data) => {
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < data.length; i++) {
@@ -31,7 +31,7 @@
   };
 
   const onLoad = (picturesData) => {
-    renderPictures(picturesData);
+    render(picturesData);
     window.main.setPicturesHandlers(picturesData);
 
     imgFilters.classList.remove(`img-filters--inactive`);
@@ -52,6 +52,6 @@
   window.backend.load(onLoad, onError);
 
   window.picture = {
-    renderPictures
+    render
   };
 })();
