@@ -37,28 +37,28 @@
   };
 
   const onScaleBiggerClick = (evt) => {
-    if (scaleInput.value !== (MAX_SCALE + `%`)) {
+    if (scaleInput.value !== `${MAX_SCALE}%`) {
       changeScaleValue(evt.target);
     }
   };
 
   const onScaleBiggerPressEnter = (evt) => {
     if (evt.code === `Enter`) {
-      if (scaleInput.value !== (MAX_SCALE + `%`)) {
+      if (scaleInput.value !== `${MAX_SCALE}%`) {
         changeScaleValue(evt.target);
       }
     }
   };
 
   const onScaleSmallerClick = (evt) => {
-    if (scaleInput.value !== (MIN_SCALE + `%`)) {
+    if (scaleInput.value !== `${MIN_SCALE}%`) {
       changeScaleValue(evt.target);
     }
   };
 
   const onScaleSmallerPressEnter = (evt) => {
     if (evt.code === `Enter`) {
-      if (scaleInput.value !== (MIN_SCALE + `%`)) {
+      if (scaleInput.value !== `${MIN_SCALE}%`) {
         changeScaleValue(evt.target);
       }
     }
