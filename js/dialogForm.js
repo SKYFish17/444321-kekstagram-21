@@ -52,6 +52,7 @@
     imgUploadOverlay.classList.add(`hidden`);
 
     hashtagsInput.removeEventListener(`input`, window.formValidate.validateTags);
+    hashtagsInput.setCustomValidity(``);
 
     document.removeEventListener(`keydown`, onUploadOverlayEscPress);
 
