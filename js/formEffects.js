@@ -62,13 +62,7 @@
   };
 
   const getRatio = (numberOne, numberTwo, sign) => {
-    let ratio;
-
-    if (sign) {
-      ratio = numberOne / numberTwo * MAX_PERCENT + sign;
-    } else {
-      ratio = numberOne / numberTwo * MAX_PERCENT;
-    }
+    let ratio = sign ? numberOne / numberTwo * MAX_PERCENT + sign : numberOne / numberTwo * MAX_PERCENT;
 
     return ratio;
   };
