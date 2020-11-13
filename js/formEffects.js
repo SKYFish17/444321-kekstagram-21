@@ -46,26 +46,13 @@
   };
 
   const getFilter = (effectType, effectMinLevel, effectMaxLevel, unit, pinPosition) => {
-    let effectLevel;
-    let filter;
     const effectLevelDifference = effectMaxLevel - effectMinLevel;
+    const effectLevel = effectMinLevel + pinPosition / END_PIN_POSITION * effectLevelDifference;
 
-    effectLevel = effectMinLevel + pinPosition / END_PIN_POSITION * effectLevelDifference;
-
-    if (unit !== `none`) {
-      filter = effectType + `(` + effectLevel + unit + `)`;
-    } else {
-      filter = effectType + `(` + effectLevel + `)`;
-    }
-
-    return filter;
+    return unit !== `none` ? `${effectType}(${effectLevel}${unit})` : `${effectType}(${effectLevel})`;
   };
 
-  const getRatio = (numberOne, numberTwo, sign) => {
-    let ratio = sign ? numberOne / numberTwo * MAX_PERCENT + sign : numberOne / numberTwo * MAX_PERCENT;
-
-    return ratio;
-  };
+  const getRatio = (numberOne, numberTwo, sign) => sign ? numberOne / numberTwo * MAX_PERCENT + sign : numberOne / numberTwo * MAX_PERCENT;
 
   const renderActualEffectLevel = (pinPosition) => {
     effectLevelPin.style.left = getRatio(pinPosition, END_PIN_POSITION, `%`);
