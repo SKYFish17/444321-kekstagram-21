@@ -61,7 +61,7 @@
 
     scaleSmaller.removeEventListener(`click`, window.formScale.onScaleSmallerClick);
     scaleSmaller.removeEventListener(`keydown`, window.formScale.onScaleSmallerPressEnter);
-    window.formScale.resetScaleValue();
+    window.formScale.resetValue();
 
     effectsList.removeEventListener(`change`, window.formEffects.onItemClick, true);
     window.formEffects.reset();

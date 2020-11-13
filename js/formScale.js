@@ -31,7 +31,7 @@
     }
   };
 
-  const resetScaleValue = () => {
+  const resetValue = () => {
     imgUploadPreviewContainer.style.transform = `scale(1)`;
     scaleInput.value = `${MAX_SCALE}%`;
   };
@@ -69,6 +69,6 @@
     onScaleBiggerPressEnter,
     onScaleSmallerClick,
     onScaleSmallerPressEnter,
-    resetScaleValue
+    resetValue
   };
 })();
