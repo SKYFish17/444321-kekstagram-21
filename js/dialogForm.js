@@ -40,7 +40,7 @@
 
     scaleSmaller.addEventListener(`click`, window.formScale.onScaleSmallerClick);
     scaleSmaller.addEventListener(`keydown`, window.formScale.onScaleSmallerPressEnter);
-    effectsList.addEventListener(`change`, window.formEffects.onEffectsItemClick, true);
+    effectsList.addEventListener(`change`, window.formEffects.onItemClick, true);
 
     if (effectsPreviewNone.checked) {
       effectSlider.classList.add(`hidden`);
@@ -63,8 +63,8 @@
     scaleSmaller.removeEventListener(`keydown`, window.formScale.onScaleSmallerPressEnter);
     window.formScale.resetScaleValue();
 
-    effectsList.removeEventListener(`change`, window.formEffects.onEffectsItemClick, true);
-    window.formEffects.resetEffects();
+    effectsList.removeEventListener(`change`, window.formEffects.onItemClick, true);
+    window.formEffects.reset();
   };
 
   const onUploadOverlayEscPress = (evt) => {

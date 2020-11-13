@@ -20,7 +20,7 @@
 
   let previousEffectName = ``;
 
-  const onEffectsItemClick = (evt) => {
+  const onItemClick = (evt) => {
     const effectName = `effects__preview--${evt.target.value}`;
 
     if (previousEffectName) {
@@ -38,7 +38,7 @@
     changeEffectLevel(END_PIN_POSITION);
   };
 
-  const resetEffects = () => {
+  const reset = () => {
     imgUploadInput.value = ``;
     imgUploadPreview.classList = ``;
     imgUploadPreview.style.filter = ``;
@@ -138,8 +138,8 @@
   });
 
   window.formEffects = {
-    onEffectsItemClick,
-    resetEffects,
+    onItemClick,
+    reset,
     imgUploadForm
   };
 })();
