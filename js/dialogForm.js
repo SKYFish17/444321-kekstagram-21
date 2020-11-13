@@ -158,7 +158,7 @@
     closeUploadOverlay();
   });
 
-  window.formEffects.imgUploadForm.addEventListener(`submit`, function (evt) {
+  window.formEffects.imgUploadForm.addEventListener(`submit`, (evt) => {
     window.backend.save(new FormData(window.formEffects.imgUploadForm), onLoad, onError);
     evt.preventDefault();
   });
