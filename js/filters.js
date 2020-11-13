@@ -76,7 +76,7 @@
     applyFilter(evt, picturesData);
   });
 
-  const onFilterBtnClick = (evt, picturesData, btn) => {
+  const onBtnClick = (evt, picturesData, btn) => {
     let data = picturesData;
 
     if (btn === filterRandomBtn) {
@@ -89,6 +89,6 @@
   };
 
   window.filters = {
-    onFilterBtnClick
+    onBtnClick
   };
 })();

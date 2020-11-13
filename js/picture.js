@@ -37,7 +37,7 @@
     imgFilters.classList.remove(`img-filters--inactive`);
 
     imgFiltersForm.addEventListener(`click`, (evt) => {
-      window.filters.onFilterBtnClick(evt, picturesData, evt.target);
+      window.filters.onBtnClick(evt, picturesData, evt.target);
     });
   };
 
