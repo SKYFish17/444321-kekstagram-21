@@ -36,13 +36,13 @@
     scaleInput.value = `${MAX_SCALE}%`;
   };
 
-  const onScaleBiggerClick = (evt) => {
+  const onBiggerBtnClick = (evt) => {
     if (scaleInput.value !== `${MAX_SCALE}%`) {
       changeScaleValue(evt.target);
     }
   };
 
-  const onScaleBiggerPressEnter = (evt) => {
+  const onBiggerBtnPressEnter = (evt) => {
     if (evt.code === `Enter`) {
       if (scaleInput.value !== `${MAX_SCALE}%`) {
         changeScaleValue(evt.target);
@@ -50,13 +50,13 @@
     }
   };
 
-  const onScaleSmallerClick = (evt) => {
+  const onSmallerBtnClick = (evt) => {
     if (scaleInput.value !== `${MIN_SCALE}%`) {
       changeScaleValue(evt.target);
     }
   };
 
-  const onScaleSmallerPressEnter = (evt) => {
+  const onSmallerBtnPressEnter = (evt) => {
     if (evt.code === `Enter`) {
       if (scaleInput.value !== `${MIN_SCALE}%`) {
         changeScaleValue(evt.target);
@@ -65,10 +65,10 @@
   };
 
   window.formScale = {
-    onScaleBiggerClick,
-    onScaleBiggerPressEnter,
-    onScaleSmallerClick,
-    onScaleSmallerPressEnter,
+    onBiggerBtnClick,
+    onBiggerBtnPressEnter,
+    onSmallerBtnClick,
+    onSmallerBtnPressEnter,
     resetValue
   };
 })();

@@ -35,11 +35,11 @@
 
     document.addEventListener(`keydown`, onUploadOverlayEscPress);
 
-    scaleBigger.addEventListener(`click`, window.formScale.onScaleBiggerClick);
-    scaleBigger.addEventListener(`keydown`, window.formScale.onScaleBiggerPressEnter);
+    scaleBigger.addEventListener(`click`, window.formScale.onBiggerBtnClick);
+    scaleBigger.addEventListener(`keydown`, window.formScale.onBiggerBtnPressEnter);
 
-    scaleSmaller.addEventListener(`click`, window.formScale.onScaleSmallerClick);
-    scaleSmaller.addEventListener(`keydown`, window.formScale.onScaleSmallerPressEnter);
+    scaleSmaller.addEventListener(`click`, window.formScale.onSmallerBtnClick);
+    scaleSmaller.addEventListener(`keydown`, window.formScale.onSmallerBtnPressEnter);
     effectsList.addEventListener(`change`, window.formEffects.onItemClick, true);
 
     if (effectsPreviewNone.checked) {
@@ -56,11 +56,11 @@
 
     document.removeEventListener(`keydown`, onUploadOverlayEscPress);
 
-    scaleBigger.removeEventListener(`click`, window.formScale.onScaleBiggerClick);
-    scaleBigger.removeEventListener(`keydown`, window.formScale.onScaleBiggerPressEnter);
+    scaleBigger.removeEventListener(`click`, window.formScale.onBiggerBtnClick);
+    scaleBigger.removeEventListener(`keydown`, window.formScale.onBiggerBtnPressEnter);
 
-    scaleSmaller.removeEventListener(`click`, window.formScale.onScaleSmallerClick);
-    scaleSmaller.removeEventListener(`keydown`, window.formScale.onScaleSmallerPressEnter);
+    scaleSmaller.removeEventListener(`click`, window.formScale.onSmallerBtnClick);
+    scaleSmaller.removeEventListener(`keydown`, window.formScale.onSmallerBtnPressEnter);
     window.formScale.resetValue();
 
     effectsList.removeEventListener(`change`, window.formEffects.onItemClick, true);
